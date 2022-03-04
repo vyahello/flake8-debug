@@ -1,0 +1,2 @@
+flake8==4.0.1
+astpretty==2.1.0
