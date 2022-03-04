@@ -1,9 +1,12 @@
 ![Screenshot](logo.png)
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![Coverage Status](https://coveralls.io/repos/github/vyahello/flake8-no-print/badge.svg?branch=master)](https://coveralls.io/github/vyahello/flake8-no-print?branch=master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with flake8](https://img.shields.io/badge/flake8-checked-blue)](http://flake8.pycqa.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print/)
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 
 # flake8-no-print
@@ -24,7 +27,20 @@
 
 ## Usage
 
-### Quick start
+```python
+# foo.py
+
+def bar(*a):
+    print(a)
+    return 0
+```
+
+```bash
+flake8 foo.py
+foo.py:2:5: NP100 "print()" function usage is forbidden, please consider using "logging" module
+```
+
+### Installation
 
 ```bash
 pip install flake8-no-print
@@ -41,7 +57,12 @@ python3 -m venv venv
 pip install -e .
 ```
 
+
 **[⬆ back to top](#flake8-no-print)**
+
+## Warnings
+
+`NP100` - print function is forbidden.
 
 ## Development notes
 
