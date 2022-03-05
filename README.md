@@ -6,7 +6,9 @@
 [![Checked with flake8](https://img.shields.io/badge/flake8-checked-blue)](http://flake8.pycqa.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print/)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print)
+[![PyPi downloads](https://img.shields.io/pypi/dm/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print)
+[![Downloads](https://pepy.tech/badge/flake8-no-print)](https://pepy.tech/project/flake8-no-print)
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 
 # flake8-no-print

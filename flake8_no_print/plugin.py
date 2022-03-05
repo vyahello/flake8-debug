@@ -10,6 +10,10 @@ class ForbiddenVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         self.issues: List[Tuple[int, int, str]] = []
 
+    def visit_ClassDef(self, node):
+        breakpoint()
+        print(node)
+
     def visit_Call(self, node: ast.Call) -> None:
         if isinstance(node.func, ast.Name) and node.func.id == self.forbidden:
             message = (
