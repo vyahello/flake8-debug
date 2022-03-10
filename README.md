@@ -50,10 +50,10 @@ pip install -e .
 
 ### Codes
 
-`DB100` - print function is forbidden.
-`DB200` - breakpoint function is forbidden.
-`DB201` - breakpointhook function is forbidden.
-`DB300` - set_trace function is forbidden.
+- `DB100` - print function is detected.
+- `DB200` - breakpoint function is detected.
+- `DB201` - breakpointhook function is detected.
+- `DB300` - set_trace function is detected.
 
 ### Sample
 
