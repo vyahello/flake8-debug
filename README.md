@@ -1,14 +1,14 @@
-![Screenshot](logo.png)
+![Screenshot](icon.png)
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Coverage Status](https://coveralls.io/repos/github/vyahello/flake8-no-print/badge.svg?branch=master)](https://coveralls.io/github/vyahello/flake8-no-print?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/vyahello/flake8-debug/badge.svg?branch=master)](https://coveralls.io/github/vyahello/flake8-debug?branch=master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with flake8](https://img.shields.io/badge/flake8-checked-blue)](http://flake8.pycqa.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
-[![PyPI version shields.io](https://img.shields.io/pypi/v/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print/)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print)
-[![PyPi downloads](https://img.shields.io/pypi/dm/flake8-no-print.svg)](https://pypi.python.org/pypi/flake8-no-print)
-[![Downloads](https://pepy.tech/badge/flake8-no-print)](https://pepy.tech/project/flake8-no-print)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/flake8-debug.svg)](https://pypi.python.org/pypi/flake8-debug/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/flake8-debug.svg)](https://pypi.python.org/pypi/flake8-debug)
+[![PyPi downloads](https://img.shields.io/pypi/dm/flake8-debug.svg)](https://pypi.python.org/pypi/flake8-debug)
+[![Downloads](https://pepy.tech/badge/flake8-debug)](https://pepy.tech/project/flake8-debug)
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 
 # flake8-debug
@@ -68,7 +68,6 @@ def bar(*a):
     breakpoint()
     breakpointhook()
     set_trace()
-    return 0
 ```
 
 ```bash
@@ -79,10 +78,7 @@ foo.py:8:5: DB201 breakpointhook() function usage is detected
 foo.py:9:5: DB300 set_trace() function usage is detected
 ```
 
-
 **[⬆ back to top](#flake8-debug)**
-
-
 
 ## Development notes
 
@@ -126,7 +122,7 @@ I would highly appreciate any contribution and support. If you are interested to
 
 ### What's next
 
-All recent activities and ideas are described at project [issues](https://github.com/vyahello/flake8-no-print/issues) page. 
+All recent activities and ideas are described at project [issues](https://github.com/vyahello/flake8-debug/issues) page. 
 If you have ideas you want to change/implement please do not hesitate and create an issue.
 
 **[⬆ back to top](#flake8-debug)**
