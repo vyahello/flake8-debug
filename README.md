@@ -11,14 +11,14 @@
 [![Downloads](https://pepy.tech/badge/flake8-no-print)](https://pepy.tech/project/flake8-no-print)
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 
-# flake8-no-print
+# flake8-debug
 
-> A simple flake8 plugin that forbids the usage of `print` functions in production code.
+> A simple flake8 plugin that forbids the usage of `print`, `breakpoint` and `pdb.set_trace` functions in production code.
 
 ## Tools
 
 ### Production
-- python 3.8+
+- python 3.7+
 - [flake8](http://flake8.pycqa.org/en/latest/)
 
 ### Development
@@ -27,44 +27,62 @@
 - [flake8](http://flake8.pycqa.org/en/latest/)
 - [pytest](https://docs.pytest.org/en/7.0.x/)
 
-## Usage
+## Installation
 
-```python
-# foo.py
-
-def bar(*a):
-    print(a)
-    return 0
-```
+### PYPI
 
 ```bash
-flake8 foo.py
-foo.py:2:5: NP100 "print()" function usage is forbidden, please consider using "logging" module
-```
-
-### Installation
-
-```bash
-pip install flake8-no-print
+pip install flake8-debug
 ✨ 🍰 ✨
 ```
 
 ### Source code
 
 ```bash
-git clone git@github.com:vyahello/flake8-no-print.git
-cd flake8-no-print
+git clone git@github.com:vyahello/flake8-debug.git
+cd flake8-debug
 python3 -m venv venv 
 . venv/bin/activate
 pip install -e .
 ```
 
+## Errors
 
-**[⬆ back to top](#flake8-no-print)**
+### Codes
 
-## Warnings
+`DB100` - print function is forbidden.
+`DB200` - breakpoint function is forbidden.
+`DB201` - breakpointhook function is forbidden.
+`DB300` - set_trace function is forbidden.
 
-`NP100` - print function is forbidden.
+### Sample
+
+```python
+# foo.py
+from sys import breakpointhook
+from pdb import set_trace
+
+
+def bar(*a):
+    print(a)
+    breakpoint()
+    breakpointhook()
+    set_trace()
+    return 0
+```
+
+```bash
+flake8 foo.py
+foo.py:6:5: DB100 print() function usage is detected
+foo.py:7:5: DB200 breakpoint() function usage is detected
+foo.py:8:5: DB201 breakpointhook() function usage is detected
+foo.py:9:5: DB300 set_trace() function usage is detected
+```
+
+
+**[⬆ back to top](#flake8-debug)**
+
+
 
 ## Development notes
 
@@ -111,4 +129,4 @@ I would highly appreciate any contribution and support. If you are interested to
 All recent activities and ideas are described at project [issues](https://github.com/vyahello/flake8-no-print/issues) page. 
 If you have ideas you want to change/implement please do not hesitate and create an issue.
 
-**[⬆ back to top](#flake8-no-print)**
+**[⬆ back to top](#flake8-debug)**

@@ -2,7 +2,7 @@ from typing import Sequence
 
 from setuptools import find_packages, setup
 
-from flake8_no_print.meta import Meta
+from flake8_debug.meta import Meta
 
 
 def __load_readme() -> str:
@@ -32,7 +32,7 @@ if __name__ == '__main__':
         ),
         entry_points={
             'flake8.extension': [
-                'NP = flake8_no_print.plugin:NoPrint',
+                'DB = flake8_debug.plugin:NoDebug',
             ],
         },
         install_requires=__load_requirements(),
@@ -41,7 +41,11 @@ if __name__ == '__main__':
             'Environment :: Console',
             'Intended Audience :: Developers',
             f'License :: OSI Approved :: {Meta.license}',
-            'Programming Language :: Python :: 3',
+            'Programming Language :: Python',
+            'Programming Language :: Python :: 3.7',
+            'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
+            'Programming Language :: Python :: 3.10',
             'Topic :: Software Development :: Libraries :: Python Modules',
             'Topic :: Software Development :: Quality Assurance',
         ],
