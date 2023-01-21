@@ -8,6 +8,7 @@ from flake8_debug.errors import (
     PrintError,
     BreakpointError,
     BreakpointHookError,
+    PdbError,
 )
 from flake8_debug.plugin import NoDebug
 
@@ -76,4 +77,20 @@ def test_present_multiple_breakpointhooks():
         'breakpointhook(0)\n    breakpointhook(0)'
     ) == tuple(
         _out(line, column=5, err=BreakpointHookError()) for line in (3, 4)
+    )
+
+
+def test_present_set_trace():
+    assert _plugin_results(
+        'def f():\n    import pdb\n    pdb.set_trace()'
+    ) == (
+        _out(line=3, column=5, err=PdbError()),
+    )
+
+
+def test_present_bare_set_trace():
+    assert _plugin_results(
+        'def f():\n    from pdb import set_trace\n    set_trace()'
+    ) == (
+        _out(line=3, column=5, err=PdbError()),
     )

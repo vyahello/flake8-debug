@@ -17,6 +17,9 @@ class DebugVisitor(ast.NodeVisitor):
             if (
                 isinstance(node.func, ast.Name)
                 and node.func.id == error.func_name
+            ) or (
+                isinstance(node.func, ast.Attribute)
+                and node.func.attr == error.func_name
             ):
                 self.issues.append((node.lineno, node.col_offset, error().msg))
 
