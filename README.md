@@ -59,8 +59,9 @@ pip install -e .
 
 ```python
 # foo.py
-from sys import breakpointhook
+import pdb
 from pdb import set_trace
+from sys import breakpointhook
 
 
 def bar(*a):
@@ -68,14 +69,17 @@ def bar(*a):
     breakpoint()
     breakpointhook()
     set_trace()
+    pdb.set_trace()
 ```
 
 ```bash
 flake8 foo.py
-foo.py:6:5: DB100 print() function usage is detected
-foo.py:7:5: DB200 breakpoint() function usage is detected
-foo.py:8:5: DB201 breakpointhook() function usage is detected
-foo.py:9:5: DB300 set_trace() function usage is detected
+
+foo.py:7:5: DB100 print() function usage is detected
+foo.py:8:5: DB200 breakpoint() function usage is detected
+foo.py:9:5: DB201 breakpointhook() function usage is detected
+foo.py:10:5: DB300 set_trace() function usage is detected
+foo.py:11:5: DB300 set_trace() function usage is detected
 ```
 
 **[⬆ back to top](#flake8-debug)**
