@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Sequence
 
 from setuptools import find_packages, setup
@@ -7,13 +8,13 @@ from flake8_debug.meta import Meta
 
 def __load_readme() -> str:
     """Returns project description."""
-    with open("README.md") as readme:  # type: IO[str]
+    with Path("README.md").open() as readme:  # type: IO[str]
         return readme.read()
 
 
 def __load_requirements() -> Sequence[str]:
     """Returns requirements sequence."""
-    with open("requirements.txt") as requirements:  # type: IO[str]
+    with Path("requirements.txt").open() as requirements:  # type: IO[str]
         return tuple(map(str.strip, requirements.readlines()))
 
 
