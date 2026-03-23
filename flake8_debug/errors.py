@@ -1,4 +1,7 @@
-class Error:
+from abc import ABC
+
+
+class Error(ABC):
     code: str
     func_name: str
 

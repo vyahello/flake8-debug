@@ -94,3 +94,27 @@ def test_present_bare_set_trace():
     ) == (
         _out(line=3, column=5, err=PdbError()),
     )
+
+
+def test_nested_print_is_detected():
+    assert _plugin_results('foo(print(0))') == (
+        _out(line=1, column=5, err=PrintError()),
+    )
+
+
+def test_nested_breakpoint_is_detected():
+    assert _plugin_results('foo(breakpoint())') == (
+        _out(line=1, column=5, err=BreakpointError()),
+    )
+
+
+def test_no_false_positive_on_arbitrary_object_print():
+    assert not _plugin_results('logger.print("msg")')
+
+
+def test_no_false_positive_on_arbitrary_object_breakpoint():
+    assert not _plugin_results('self.breakpoint()')
+
+
+def test_no_false_positive_on_arbitrary_object_set_trace():
+    assert not _plugin_results('cursor.set_trace()')
