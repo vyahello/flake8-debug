@@ -18,7 +18,7 @@
 ## Tools
 
 ### Production
-- python 3.9+
+- python 3.10+
 - [flake8](http://flake8.pycqa.org/en/latest/)
 
 ### Development
