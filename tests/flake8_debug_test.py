@@ -1,5 +1,6 @@
 import ast
 from typing import Tuple
+from unittest.mock import patch
 
 import pytest
 
@@ -10,7 +11,7 @@ from flake8_debug.errors import (
     BreakpointHookError,
     PdbError,
 )
-from flake8_debug.plugin import NoDebug
+from flake8_debug.plugin import DebugVisitor, NoDebug
 
 pytestmark = pytest.mark.unit
 
@@ -118,3 +119,9 @@ def test_no_false_positive_on_arbitrary_object_breakpoint():
 
 def test_no_false_positive_on_arbitrary_object_set_trace():
     assert not _plugin_results('cursor.set_trace()')
+
+
+def test_recursion_error_is_handled():
+    tree = ast.parse('x = 1')
+    with patch.object(DebugVisitor, 'visit', side_effect=RecursionError):
+        assert list(NoDebug(tree).run()) == []
