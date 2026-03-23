@@ -7,7 +7,7 @@ from flake8_debug.meta import Meta
 
 TDebug = Generator[Tuple[int, int, str, Type[Any]], None, None]
 
-# Only these func names are meaningful as attribute calls (e.g. pdb.set_trace())
+# Func names meaningful only as attribute calls (e.g. pdb.set_trace())
 _ATTR_DETECTABLE: frozenset = frozenset({'set_trace'})
 # Only flag attribute calls when the object looks like a known debugger module
 _DEBUGGER_MODULES: frozenset = frozenset({'pdb', 'ipdb'})
