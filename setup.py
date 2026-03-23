@@ -3,8 +3,6 @@ from typing import Sequence
 
 from setuptools import find_packages, setup
 
-from flake8_debug.meta import Meta
-
 
 def __load_readme() -> str:
     """Returns project description."""
@@ -19,6 +17,8 @@ def __load_requirements() -> Sequence[str]:
 
 
 if __name__ == '__main__':
+    from flake8_debug.meta import Meta
+
     setup(
         name=Meta.name,
         version=Meta.version,
