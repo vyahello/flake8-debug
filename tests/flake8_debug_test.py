@@ -28,43 +28,43 @@ def _out(line: int, column: int, err: Error) -> str:
     return f'{line}:{column} {err.msg}'
 
 
-def test_absent_print():
+def test_absent_print() -> None:
     assert not _plugin_results('def f():\n    ...')
 
 
-def test_present_print():
+def test_present_print() -> None:
     assert _plugin_results('def f():\n    print(0)') == (
         _out(line=2, column=5, err=PrintError()),
     )
 
 
-def test_present_multiple_prints():
+def test_present_multiple_prints() -> None:
     assert _plugin_results('def f():\n    print(0)\n    print(0)') == tuple(
         _out(line, column=5, err=PrintError()) for line in (2, 3)
     )
 
 
-def test_absent_breakpoint():
+def test_absent_breakpoint() -> None:
     assert not _plugin_results('def f():\n    ...')
 
 
-def test_present_breakpoint():
+def test_present_breakpoint() -> None:
     assert _plugin_results('def f():\n    breakpoint(0)') == (
         _out(line=2, column=5, err=BreakpointError()),
     )
 
 
-def test_present_multiple_breakpoints():
+def test_present_multiple_breakpoints() -> None:
     assert _plugin_results(
         'def f():\n    breakpoint(0)\n    breakpoint(0)'
     ) == tuple(_out(line, column=5, err=BreakpointError()) for line in (2, 3))
 
 
-def test_absent_breakpointhook():
+def test_absent_breakpointhook() -> None:
     assert not _plugin_results('def f():\n    ...')
 
 
-def test_present_breakpointhook():
+def test_present_breakpointhook() -> None:
     assert _plugin_results(
         'def f():\n    from sys import breakpointhook\n    breakpointhook(0)'
     ) == (
@@ -72,7 +72,7 @@ def test_present_breakpointhook():
     )
 
 
-def test_present_multiple_breakpointhooks():
+def test_present_multiple_breakpointhooks() -> None:
     assert _plugin_results(
         'def f():\n    from sys import breakpointhook\n    '
         'breakpointhook(0)\n    breakpointhook(0)'
@@ -81,7 +81,7 @@ def test_present_multiple_breakpointhooks():
     )
 
 
-def test_present_set_trace():
+def test_present_set_trace() -> None:
     assert _plugin_results(
         'def f():\n    import pdb\n    pdb.set_trace()'
     ) == (
@@ -89,7 +89,7 @@ def test_present_set_trace():
     )
 
 
-def test_present_bare_set_trace():
+def test_present_bare_set_trace() -> None:
     assert _plugin_results(
         'def f():\n    from pdb import set_trace\n    set_trace()'
     ) == (
@@ -97,31 +97,31 @@ def test_present_bare_set_trace():
     )
 
 
-def test_nested_print_is_detected():
+def test_nested_print_is_detected() -> None:
     assert _plugin_results('foo(print(0))') == (
         _out(line=1, column=5, err=PrintError()),
     )
 
 
-def test_nested_breakpoint_is_detected():
+def test_nested_breakpoint_is_detected() -> None:
     assert _plugin_results('foo(breakpoint())') == (
         _out(line=1, column=5, err=BreakpointError()),
     )
 
 
-def test_no_false_positive_on_arbitrary_object_print():
+def test_no_false_positive_on_arbitrary_object_print() -> None:
     assert not _plugin_results('logger.print("msg")')
 
 
-def test_no_false_positive_on_arbitrary_object_breakpoint():
+def test_no_false_positive_on_arbitrary_object_breakpoint() -> None:
     assert not _plugin_results('self.breakpoint()')
 
 
-def test_no_false_positive_on_arbitrary_object_set_trace():
+def test_no_false_positive_on_arbitrary_object_set_trace() -> None:
     assert not _plugin_results('cursor.set_trace()')
 
 
-def test_recursion_error_is_handled():
+def test_recursion_error_is_handled() -> None:
     tree = ast.parse('x = 1')
     with patch.object(DebugVisitor, 'visit', side_effect=RecursionError):
         assert list(NoDebug(tree).run()) == []

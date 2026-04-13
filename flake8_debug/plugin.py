@@ -1,22 +1,22 @@
 import ast
 import sys
-from typing import List, Tuple, Generator, Type, Any, Optional
+from typing import Final, Generator
 
 from flake8_debug.errors import ERRORS, Error
 from flake8_debug.meta import Meta
 
-TDebug = Generator[Tuple[int, int, str, Type[Any]], None, None]
+TDebug = Generator[tuple[int, int, str, type["NoDebug"]], None, None]
 
 # Func names meaningful only as attribute calls (e.g. pdb.set_trace())
-_ATTR_DETECTABLE: frozenset = frozenset({'set_trace'})
+_ATTR_DETECTABLE: Final[frozenset[str]] = frozenset({'set_trace'})
 # Only flag attribute calls when the object looks like a known debugger module
-_DEBUGGER_MODULES: frozenset = frozenset({'pdb', 'ipdb'})
+_DEBUGGER_MODULES: Final[frozenset[str]] = frozenset({'pdb', 'ipdb'})
 
 
 class DebugVisitor(ast.NodeVisitor):
-    def __init__(self, errors: Tuple[Type[Error], ...]) -> None:
+    def __init__(self, errors: tuple[type[Error], ...]) -> None:
         self._errors = errors
-        self.issues: List[Tuple[int, int, str]] = []
+        self.issues: list[tuple[int, int, str]] = []
 
     def visit_Call(self, node: ast.Call) -> None:
         for error in self._errors:
@@ -40,10 +40,9 @@ class NoDebug:
     name: str = Meta.name
     version: str = Meta.version
 
-    def __init__(
-        self, tree: ast.Module, filename: Optional[str] = None
-    ) -> None:
+    def __init__(self, tree: ast.Module, filename: str | None = None) -> None:
         self._tree = tree
+        self._filename = filename
 
     def run(self) -> TDebug:
         debug = DebugVisitor(ERRORS)
@@ -55,5 +54,5 @@ class NoDebug:
             pass
         finally:
             sys.setrecursionlimit(old_limit)
-        for lineno, column, msg in debug.issues:  # type: int, int, str
+        for lineno, column, msg in debug.issues:
             yield lineno, column, msg, type(self)

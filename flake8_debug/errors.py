@@ -1,4 +1,5 @@
 from abc import ABC
+from typing import Final
 
 
 class Error(ABC):
@@ -30,4 +31,9 @@ class PdbError(Error):
     func_name: str = 'set_trace'
 
 
-ERRORS = (PrintError, BreakpointError, BreakpointHookError, PdbError)
+ERRORS: Final[tuple[type[Error], ...]] = (
+    PrintError,
+    BreakpointError,
+    BreakpointHookError,
+    PdbError,
+)

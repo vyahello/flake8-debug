@@ -1,7 +1,7 @@
 class Meta:
-    name = 'flake8-debug'
-    version = '0.3.0'
-    license = 'MIT License'
-    author = 'Vladimir Yahello'
-    email = 'vyahello@gmail.com'
-    about = 'Flake8 plugin to forbid debug function usage'
+    name: str = 'flake8-debug'
+    version: str = '0.3.0'
+    license: str = 'MIT License'
+    author: str = 'Vladimir Yahello'
+    email: str = 'vyahello@gmail.com'
+    about: str = 'Flake8 plugin to forbid debug function usage'

@@ -6,13 +6,13 @@ from setuptools import find_packages, setup
 
 def __load_readme() -> str:
     """Returns project description."""
-    with Path("README.md").open() as readme:  # type: IO[str]
+    with Path("README.md").open(encoding='utf-8') as readme:
         return readme.read()
 
 
 def __load_requirements() -> Sequence[str]:
     """Returns requirements sequence."""
-    with Path("requirements.txt").open() as requirements:  # type: IO[str]
+    with Path("requirements.txt").open(encoding='utf-8') as requirements:
         return tuple(map(str.strip, requirements.readlines()))
 
 
