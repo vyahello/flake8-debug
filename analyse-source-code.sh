@@ -21,7 +21,7 @@ check-black() {
 :<<DOC
     Runs "black" code analyser
 DOC
-    pretty-printer-box "black" && ( black --check ${PACKAGE} )
+    pretty-printer-box "black" && ( black --check "${PACKAGE}" )
 }
 
 
@@ -29,7 +29,7 @@ check-flake() {
 :<<DOC
     Runs "flake8" code analysers
 DOC
-    pretty-printer-box "flake" && ( flake8 ${PACKAGE} )
+    pretty-printer-box "flake" && ( flake8 "${PACKAGE}" )
 }
 
 

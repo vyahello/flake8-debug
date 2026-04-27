@@ -35,3 +35,6 @@ build/
 
 # output file
 *.html
+
+# vscode
+.vscode/
