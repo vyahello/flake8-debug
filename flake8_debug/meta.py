@@ -1,7 +1,10 @@
+from typing import Final
+
+
 class Meta:
-    name: str = 'flake8-debug'
-    version: str = '0.3.0'
-    license: str = 'MIT License'
-    author: str = 'Vladimir Yahello'
-    email: str = 'vyahello@gmail.com'
-    about: str = 'Flake8 plugin to forbid debug function usage'
+    name: Final[str] = 'flake8-debug'
+    version: Final[str] = '0.3.0'
+    license: Final[str] = 'MIT License'
+    author: Final[str] = 'Vladimir Yahello'
+    email: Final[str] = 'vyahello@gmail.com'
+    about: Final[str] = 'Flake8 plugin to forbid debug function usage'

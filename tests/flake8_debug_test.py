@@ -1,5 +1,4 @@
 import ast
-from typing import Tuple
 from unittest.mock import patch
 
 import pytest
@@ -16,7 +15,7 @@ from flake8_debug.plugin import DebugVisitor, NoDebug
 pytestmark = pytest.mark.unit
 
 
-def _plugin_results(py_content: str) -> Tuple[str, ...]:
+def _plugin_results(py_content: str) -> tuple[str, ...]:
     """Run the flake8 plugin on code and format its output."""
     plugin = NoDebug(ast.parse(py_content))
     return tuple(
@@ -105,6 +104,15 @@ def test_present_bare_set_trace() -> None:
     """A bare set_trace() call should be reported as DB300."""
     assert _plugin_results(
         'def f():\n    from pdb import set_trace\n    set_trace()'
+    ) == (
+        _out(line=3, column=5, err=PdbError()),
+    )
+
+
+def test_present_ipdb_set_trace() -> None:
+    """An ipdb.set_trace() call should be reported as DB300."""
+    assert _plugin_results(
+        'def f():\n    import ipdb\n    ipdb.set_trace()'
     ) == (
         _out(line=3, column=5, err=PdbError()),
     )

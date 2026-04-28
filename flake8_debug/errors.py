@@ -1,10 +1,10 @@
 from abc import ABC
-from typing import Final
+from typing import ClassVar, Final
 
 
 class Error(ABC):
-    code: str
-    func_name: str
+    code: ClassVar[str]
+    func_name: ClassVar[str]
 
     @property
     def msg(self) -> str:
@@ -12,23 +12,23 @@ class Error(ABC):
 
 
 class PrintError(Error):
-    code: str = 'DB100'
-    func_name: str = 'print'
+    code: ClassVar[str] = 'DB100'
+    func_name: ClassVar[str] = 'print'
 
 
 class BreakpointError(Error):
-    code: str = 'DB200'
-    func_name: str = 'breakpoint'
+    code: ClassVar[str] = 'DB200'
+    func_name: ClassVar[str] = 'breakpoint'
 
 
 class BreakpointHookError(Error):
-    code: str = 'DB201'
-    func_name: str = 'breakpointhook'
+    code: ClassVar[str] = 'DB201'
+    func_name: ClassVar[str] = 'breakpointhook'
 
 
 class PdbError(Error):
-    code: str = 'DB300'
-    func_name: str = 'set_trace'
+    code: ClassVar[str] = 'DB300'
+    func_name: ClassVar[str] = 'set_trace'
 
 
 ERRORS: Final[tuple[type[Error], ...]] = (
